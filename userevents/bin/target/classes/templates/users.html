@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymleaf.org">
+
+<head>
+    
+    <title>User List</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+
+</head>
+
+<body>
+    <div class="container text-center w-25">
+        <div>
+             <form th:action="@{/logout}" method="post">
+            <p>
+                Welcome <b>[[${#request.userPrincipal.principal.Email}]]</b> <div class=" w-100 text-center"> <button class="btn btn-lg btn-primary btn-block"><a th:href="@{add}" style="color: white;"> Add Event</a></button></div>      
+            </p>
+            <input type="submit" value="Sign Out" class="btn btn-lg btn-primary btn-block w-100"/>
+        </form>
+        </div>
+
+    </div>
+    <div class="container text center">
+       
+        <h1 class="text-center">User list</h1>
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>User Id</th>
+                    <th>User name</th>
+                    <th>User age</th>
+                    <th>User Gender</th>
+                    <th>User Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user : ${list} ">
+                    <th th:text="${user.Id}"></th>
+                    <th th:text="${user.Name}"></th>
+                    <th th:text="${user.Age}"></th>
+                    <th th:text="${user.Gender}"></th>
+                    <th th:text="${user.Email}"></th>
+                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="container text-center" >
+     <!-- <form th:object="${event}"> -->
+      <input type="date" id="date-inp"  >
+    
+       <table class="table table-striped table-bordered">
+          <thead class="thead-dark">
+              <tr>
+                  <th>Event Name:</th>
+              </tr>
+              
+          </thead>
+          <tbody>
+              <tr th:each="event:${li}">
+                  <th th:text="${event.Name}"> </th>
+              </tr>
+          </tbody>
+      </table>
+     
+        
+    </div>
+    <!-- <script>
+        let date_inp = document.getElementById("date-inp")
+        let date
+        date_inp.oninput = ()=>{
+            date = date_inp.value
+        }
+    </script> -->
+</body>
+
+</html>
